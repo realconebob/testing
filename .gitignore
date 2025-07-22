@@ -1,0 +1,11 @@
+.vscode
+main
+a.out
+*.o
+*.d
+Main
+client
+server
+!server/
+!client/
+test

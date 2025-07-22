@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message CMessage {
+  repeated int32 c=1;
+}

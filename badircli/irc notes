@@ -1,0 +1,21 @@
+Nicks are non-empty strings with the following restrictions:
+    No: spaces ' ', commas ',', dot characters '.', asterisks '*', question marks '?', exclamation marks '!', or at signs '@'
+    Can't start with: dollar sign '$', colons ':', hashtags '#', ampersands '&', tildes '~', percent signs '%", or plus signs '+'
+
+Channel names can't start with: spaces ' ', a control G '^G', or a comma ','
+
+
+
+Standard connections are done over TCP/IP, port 6667 for plaintext and 6697 for tls connections
+
+When a client is connected to a server, streams of bytes are sent to each other, seperated by '\r' and 
+'\n' characters. These characters should use UTF-8 encoding. 
+
+An IRC message is a single line delimited by a pair of CR ('\r') and LF ('\n') characters. That means
+each message ends with: "\r\n"
+
+A message should be formatted as such:
+    ['@' <tags> SPACE] [':' <source> SPACE] <command> <parameters> <crlf>
+
+    > ex:  @id=234AB :dan!d@localhost PRIVMSG #chan :Hey what's up!
+
