@@ -15,6 +15,8 @@
 #define CLRBITS(val, mask) ((val) &= ~(mask))
 #define FLPBITS(val, mask) ((val) ^= (mask))
 
+#define ABSBITS(val, set, mask) ((val) = (((val) | ((set) & (mask))) & (((set) & (mask)) | ~(mask))))
+
 int main(void) {
 	const unsigned char TESTBYTE = 0b01100011;
 	unsigned char working = TESTBYTE;
@@ -28,7 +30,11 @@ int main(void) {
 
 	printf("Set bits 1 and 2: %d\n", SETBITS(working, 0b00000110));
 	printf("Clear bits 1 and 2: %d\n", CLRBITS(working, 0b00000110));
-	printf("Flip bits 6 and 7: %d\n", FLPBITS(working, 0b11000000));
+	printf("Flip bits 6 and 7: %d\n\n", FLPBITS(working, 0b11000000));
+
+	printf("ABSBITS clear: %d\n", ABSBITS(working, 0b00000000, 0b11111111));
+	printf("ABSBITS fill: %d\n", ABSBITS(working, ~0b00000000, 0b11111111));
+	printf("ABSBITS set: %d\n", ABSBITS(working, 0b10101010, 0b11110000));
 
 	return 0;
 }
