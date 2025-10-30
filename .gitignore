@@ -9,3 +9,4 @@ server
 !server/
 !client/
 test
+index*
