@@ -1,3 +1,0 @@
-Learn how to connect to an irc server, authenticate as an operator, join a channel, and send a message
-
-compilation flags: -Wall -Wextra -Wpedantic -l:libdaemon.a

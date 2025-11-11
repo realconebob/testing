@@ -1,1 +1,0 @@
-Cron jobs won't retroactively run if they miss their deadline, so the best solution is to check occasionally (such as on the hour) but to have a script that only executes once per day. I've written a script like this once before, but I forgot exactly how, so this is me remembering how
