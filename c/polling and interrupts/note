@@ -1,0 +1,7 @@
+Polling is actively checking something regularly, interrupts pause execution to do a specific thing and then resume
+
+If a process is infrequent, urgent, and asynchronous, interrupts may be better
+If a process is frequent, not urgent, and synchronous, polling may be better
+
+Compilation flags:
+    -Wall -Wextra -Wpedantic -fanalyzer -Wanalyzer-too-complex -ggdb -Og
