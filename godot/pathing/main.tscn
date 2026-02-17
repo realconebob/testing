@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://tadlb3alhod5"]
+
+[ext_resource type="Script" uid="uid://k7djhew48uuo" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://csond2fh4b1gu" path="res://guy.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cbcndryir6tix" path="res://cursor_follower.tscn" id="3_1bvp3"]
+
+[node name="Main" type="Node2D" unique_id=1818172366]
+script = ExtResource("1_h2yge")
+
+[node name="Guy" parent="." unique_id=790642446 instance=ExtResource("1_ig7tw")]
+position = Vector2(158, 490)
+
+[node name="Cursor Follower" parent="." unique_id=1983491667 instance=ExtResource("3_1bvp3")]
+position = Vector2(158, 490)
+
+[connection signal="area_entered" from="Cursor Follower" to="." method="_on_cursor_follower_area_entered"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cbcndryir6tix"]
+
+[ext_resource type="Texture2D" uid="uid://kritl81noe7w" path="res://apple-with-transparent-background-13-2235615530.png" id="1_1iqhu"]
+[ext_resource type="Script" uid="uid://bxmp4t4sdsoo1" path="res://cursor_follower.gd" id="1_6kth8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6kth8"]
+
+[node name="Cursor Follower" type="Area2D" unique_id=1983491667]
+script = ExtResource("1_6kth8")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1139103262]
+shape = SubResource("CircleShape2D_6kth8")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1830060713]
+position = Vector2(0, -1.0000001)
+scale = Vector2(0.013, 0.013)
+texture = ExtResource("1_1iqhu")
