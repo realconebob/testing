@@ -11,6 +11,12 @@ func _physics_process(delta: float) -> void:
 	set_acc(dir * 8000)
 	super(delta)
 	
+	if Input.is_action_just_pressed(&"select_g1"): gunset.set_gun_index(0)
+	if Input.is_action_just_pressed(&"select_g2"): gunset.set_gun_index(1)
+	if Input.is_action_just_pressed(&"cycle_up"): gunset.set_gun_index(gunset.get_gun_index() + 1)
+	if Input.is_action_just_pressed(&"cycle_down"): gunset.set_gun_index(gunset.get_gun_index() - 1)
+		# Not ideal but it's fine
+	
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var pointing_vec: Vector2 = (mouse_pos - self.global_position) as Vector2
 	var angle: float = pointing_vec.normalized().angle()
@@ -18,3 +24,12 @@ func _physics_process(delta: float) -> void:
 	gunset.global_rotation = angle
 	gunset.position.x = 50 * cos(angle - self.global_rotation)
 	gunset.position.y = 50 * sin(angle - self.global_rotation)
+
+	if Input.is_action_pressed(&"shoot"):
+		var gun := gunset.get_current_gun()
+		gun.set_target(get_global_mouse_position())
+		gunset.fire()
+		print("player: tried to fire gun")
+		
+func get_gunset() -> GunManager:
+	return gunset

@@ -16,6 +16,7 @@ func make_bullets(t: Vector2, p: Vector2) -> Array[BaseEntity]:
 		bullet.set_max_speed(5000)
 		bullet.set_acc((t - p).normalized() * 10000)
 		bullet.position = p
+		res.append(bullet)
 	
 	return res
 

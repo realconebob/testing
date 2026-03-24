@@ -1,3 +1,14 @@
 [gd_scene format=3 uid="uid://cw7ridsuryink"]
 
-[node name="Bullet" type="Node2D" unique_id=507741706]
+[ext_resource type="Script" uid="uid://dhodhiw4juthv" path="res://guns/bullet.gd" id="1_61qgc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nxpes"]
+
+[node name="Bullet" type="CharacterBody2D" unique_id=1357256146]
+script = ExtResource("1_61qgc")
+metadata/_custom_type_script = "uid://di7unuetsdgqh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=59215643]
+shape = SubResource("CircleShape2D_nxpes")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1133729100]

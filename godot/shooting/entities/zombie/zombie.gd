@@ -1,7 +1,7 @@
 extends BaseEntity
 
 var target: Vector2
-var accel_rate: float = 6000
+var accel_rate: float = 3000
 
 func _physics_process(delta: float) -> void:
 	var dir: Vector2 = (target - position).normalized()
