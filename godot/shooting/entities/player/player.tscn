@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://820h8y0em4bh"]
+
+[ext_resource type="Script" uid="uid://ctdpehq88nv6b" path="res://entities/player/player.gd" id="1_symyc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abrql"]
+
+[node name="Player" type="CharacterBody2D" unique_id=86333956]
+script = ExtResource("1_symyc")
+metadata/_custom_type_script = "uid://di7unuetsdgqh"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1524722200]
+shape = SubResource("CapsuleShape2D_abrql")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=417853297]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer" unique_id=646029471]
+color = Color(0, 0, 0.6627451, 1)

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dfith4kcun522"]
+
+[ext_resource type="Script" uid="uid://dbejrv5k4s6vl" path="res://entities/zombie/zombie.gd" id="1_ao7cg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvcbw"]
+
+[node name="Zombie" type="CharacterBody2D" unique_id=253869572]
+script = ExtResource("1_ao7cg")
+metadata/_custom_type_script = "uid://di7unuetsdgqh"
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046109116]
+shape = SubResource("CapsuleShape2D_gvcbw")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1959032803]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer" unique_id=1188668189]
+color = Color(0, 0.43529412, 0, 1)
