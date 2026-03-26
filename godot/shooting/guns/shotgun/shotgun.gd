@@ -9,13 +9,17 @@ func make_bullets(t: Vector2, p: Vector2) -> Array[BaseEntity]:
 	var res: Array[BaseEntity] = []
 	for i in range(3):
 		var bullet: BaseEntity = bullet_scene.instantiate()
+		var randrot := randf_range(-1, 1) * 1/8 * PI
+		var theta := (t - p).normalized().angle() + randrot
+		
+		bullet.scale = Vector2.ONE * 0.5
 		bullet.look_at(target)
 		if i > 0:
-			bullet.rotate(randf_range(-1, 1) * 1/8 * PI)
+			bullet.rotate(randrot)
 		
 		bullet.set_max_speed(5000)
-		bullet.set_acc((t - p).normalized() * 10000)
-		bullet.position = p
+		bullet.set_acc(Vector2(cos(theta), sin(theta)) * 10000)
+		bullet.global_position = p
 		res.append(bullet)
 	
 	return res

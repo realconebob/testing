@@ -4,10 +4,10 @@ extends Node2D
 signal fired(bullets: Array[BaseEntity])
 
 var target: Vector2 = Vector2.ZERO
+var bpos: Vector2 = Vector2.ZERO
 
 func fire() -> void:
-	print("base_gun: tried to fire gun")
-	fired.emit(make_bullets(target, position))
+	fired.emit(make_bullets(target, bpos))
 	return
 
 func set_target(t: Vector2) -> void:
@@ -15,6 +15,12 @@ func set_target(t: Vector2) -> void:
 	
 func get_target() -> Vector2:
 	return target
+
+func set_bullet_position(pos: Vector2) -> void:
+	bpos = pos
+	
+func get_bullet_position() -> Vector2:
+	return bpos
 
 func make_bullets(_target: Vector2, _position: Vector2) -> Array[BaseEntity]:
 	assert(false, "<BaseGun::make_bullets> Error: This function is to be overwritten, not called")

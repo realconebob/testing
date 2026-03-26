@@ -33,7 +33,6 @@ func _ready() -> void:
 func fire() -> void:
 	var cgun := get_current_gun()
 	cgun.fire()
-	print("gun_manager: tried to fire gun")
 	return
 	
 func set_gun_index(i: int) -> void:

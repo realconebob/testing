@@ -28,8 +28,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed(&"shoot"):
 		var gun := gunset.get_current_gun()
 		gun.set_target(get_global_mouse_position())
+		gun.set_bullet_position(gun.get_barrel().global_position)
 		gunset.fire()
-		print("player: tried to fire gun")
 		
 func get_gunset() -> GunManager:
 	return gunset

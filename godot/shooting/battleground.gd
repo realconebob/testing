@@ -10,6 +10,6 @@ func _physics_process(delta: float) -> void:
 
 func _handle_bullets(bullets: Array[BaseEntity]) -> void:
 	for bullet in bullets:
-		print("fired")
 		add_child(bullet)
+	
 	return

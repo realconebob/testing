@@ -7,15 +7,14 @@ script = ExtResource("1_uc5xv")
 metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=305322931]
+scale = Vector2(0.375, 0.375)
 color = Color(0.14117648, 0.14117648, 0.14117648, 1)
 polygon = PackedVector2Array(-88, -22, 166.66669, -22, 166.66669, -4.666664, 66.66669, -4.666664, 66.66669, 10, 26.666687, 10, 26.666687, -3.3333282, -90.666626, -3.3333282, -121.33331, 3.3333359, -133.33331, 31.333344, -149.33331, 34, -160, 15.333336, -141.33331, -11.333328, -112, -22)
 uv = PackedVector2Array(-88, -22, 166.66669, -22, 166.66669, -4.666664, 66.66669, -4.666664, 66.66669, 10, 26.666687, 10, 26.666687, -3.3333282, -90.666626, -3.3333282, -121.33331, 3.3333359, -133.33331, 31.333344, -149.33331, 34, -160, 15.333336, -141.33331, -11.333328, -112, -22)
 metadata/_edit_lock_ = true
 
 [node name="BarrelEnd" type="Node2D" parent="." unique_id=515155217]
-position = Vector2(159, -13)
-metadata/_edit_lock_ = true
+position = Vector2(60, -5)
 
 [node name="Handle" type="Node2D" parent="." unique_id=2132782594]
-position = Vector2(-140, 11)
-metadata/_edit_lock_ = true
+position = Vector2(-53, 5)
