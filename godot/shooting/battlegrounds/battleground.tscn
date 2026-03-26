@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bepbu4oovn5f1"]
 
 [ext_resource type="PackedScene" uid="uid://820h8y0em4bh" path="res://entities/player/player.tscn" id="1_66gel"]
-[ext_resource type="Script" uid="uid://c7nv4yettdiy2" path="res://battleground.gd" id="1_ildd2"]
+[ext_resource type="Script" uid="uid://c7nv4yettdiy2" path="res://battlegrounds/battleground.gd" id="1_ildd2"]
 [ext_resource type="PackedScene" uid="uid://dfith4kcun522" path="res://entities/zombie/zombie.tscn" id="2_ildd2"]
+[ext_resource type="PackedScene" uid="uid://2vm4eubb6t66" path="res://battlegrounds/wall.tscn" id="4_xx3qu"]
 
 [node name="Battleground" type="Node2D" unique_id=1896139443]
 script = ExtResource("1_ildd2")
@@ -13,3 +14,8 @@ position = Vector2(555, 250)
 
 [node name="Zombie" parent="." unique_id=253869572 instance=ExtResource("2_ildd2")]
 position = Vector2(185, 182)
+
+[node name="Zombie2" parent="." unique_id=577471773 instance=ExtResource("2_ildd2")]
+
+[node name="Wall" parent="." unique_id=1083401006 instance=ExtResource("4_xx3qu")]
+position = Vector2(359, 234)

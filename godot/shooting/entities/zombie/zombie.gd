@@ -10,3 +10,6 @@ func _physics_process(delta: float) -> void:
 
 func set_target(t: Vector2) -> void:
 	target = t
+
+func get_type() -> String:
+	return "Zombie"

@@ -5,6 +5,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvcbw"]
 
 [node name="Zombie" type="CharacterBody2D" unique_id=253869572]
+collision_layer = 4
+collision_mask = 15
+motion_mode = 1
 script = ExtResource("1_ao7cg")
 metadata/_custom_type_script = "uid://di7unuetsdgqh"
 metadata/_edit_lock_ = true

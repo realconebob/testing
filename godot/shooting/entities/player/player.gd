@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var dir := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
-	set_acc(dir * 8000)
+	set_acc((get_acc() / 2) + (dir * 4000))
 	super(delta)
 	
 	if Input.is_action_just_pressed(&"select_g1"): gunset.set_gun_index(0)
@@ -33,3 +33,6 @@ func _physics_process(delta: float) -> void:
 		
 func get_gunset() -> GunManager:
 	return gunset
+
+func get_type() -> String:
+	return "Player"

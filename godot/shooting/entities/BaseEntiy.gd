@@ -6,6 +6,7 @@ signal damaged(this: BaseEntity)
 signal died(this: BaseEntity)
 
 var max_speed: float = 1200
+var max_accel: float = 15000
 var damping: float = 1.25
 
 var health: float = 100
@@ -36,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func set_acc(acc: Vector2) -> void:
-	accel = acc
+	accel = acc.clamp(Vector2.ONE * -max_accel, Vector2.ONE * max_accel)
 	
 func get_acc() -> Vector2:
 	return accel
@@ -47,17 +48,26 @@ func set_max_speed(speed: float) -> void:
 func get_max_speed() -> float:
 	return max_speed
 	
+func set_max_acc(acc: float) -> void:
+	max_accel = abs(acc)
+	
+func get_max_acc() -> float:
+	return max_accel
+	
 func set_health(new_hp: float) -> void:
 	if !alive: return
 	
 	var last_hp: float = health
-	health = max(0, min(new_hp, 100))
+	health = max(-1, min(new_hp, 100))
 	
 	if health < last_hp:
 		damaged.emit(self)
-	if health <= 0:
+	if health <= 0.0:
 		alive = false
 		died.emit(self)
 		
 func get_health() -> float:
 	return health
+
+func get_type() -> String:
+	return "BaseEntity"
