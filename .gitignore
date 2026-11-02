@@ -12,6 +12,7 @@ test
 index*
 workspace.xml
 mavenHomeManager.xml
+.cache/
 
 ## From IntelliJ IDEA
 target/
