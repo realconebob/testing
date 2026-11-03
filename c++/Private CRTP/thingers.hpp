@@ -9,58 +9,62 @@
 #include <memory>
 #include <string>
 
-class OddThinger: public Thinger<OddThinger, int> {
-    private:
+template<typename T>
+class BaseThinger {
+    protected:
+    BaseThinger() = default;
+    ~BaseThinger() = default;
+
     using string = std::string;
 
-    friend class Thinger<OddThinger, int>;
+    friend class Thinger<BaseThinger, T>;
+    friend class ThingerAny<T>;
+
+    std::shared_ptr<T> value_;
+
+    T& cast_impl() const {return *value_;}
+    const T& cast_const_impl() const {return *value_;}
+    const T& get_impl() const {return *value_;}
+};
+
+class OddIntThinger: public BaseThinger<int>, public Thinger<OddIntThinger, int> {
+    private:
+    friend class Thinger<OddIntThinger, int>;
     friend class ThingerAny<int>;
 
-    std::shared_ptr<int> value_;
-
-    int& cast_impl() const {return *value_;}
-    const int& cast_const_impl() const {return *value_;}
-    const int& get_impl() const {return *value_;}
-
-    std::string do_thing_impl() const {
+    string do_thing_impl() const {
         return string{"Is "} + std::to_string(*value_) + string{" odd?: "}
         + (((*value_) % 2 == 1) ? string{"Yes"} : string{"No"});
     }
 
-    public:
-    OddThinger() = delete;
-    OddThinger(const OddThinger& other): Thinger<OddThinger, int>(), value_(std::make_shared<int>(*other.value_)) {};
-    OddThinger(OddThinger&& other): Thinger<OddThinger, int>(), value_(other.value_) {other.value_ = nullptr;}
-    ~OddThinger() {}
+    OddIntThinger(): BaseThinger(), Thinger<OddIntThinger, int>() {}
 
-    OddThinger(int&& val): Thinger<OddThinger, int>(), value_(std::make_shared<int>(val)) {}
+    public:
+    OddIntThinger(const OddIntThinger& other) {value_ = std::make_shared<int>(*other.value_);};
+    OddIntThinger(OddIntThinger&& other): OddIntThinger() {value_ = other.value_; other.value_ = nullptr;}
+    ~OddIntThinger() {}
+
+    OddIntThinger(int&& val): OddIntThinger() {value_ = std::make_shared<int>(val);}
 };
 
-class EvenThinger: public Thinger<EvenThinger, int> {
+class EvenIntThinger: public BaseThinger<int>, public Thinger<EvenIntThinger, int> {
     private:
-    using string = std::string;
-
-    friend class Thinger<EvenThinger, int>;
+    friend class Thinger<EvenIntThinger, int>;
     friend class ThingerAny<int>;
 
-    std::shared_ptr<int> value_;
-
-    int& cast_impl() const {return *value_;}
-    const int& cast_const_impl() const {return *value_;}
-    const int& get_impl() const {return *value_;}
-
-    std::string do_thing_impl() const {
+    string do_thing_impl() const {
         return string{"Is "} + std::to_string(*value_) + string{" even?: "}
         + (((*value_) % 2 == 0) ? string{"Yes"} : string{"No"});
     }
 
-    public:
-    EvenThinger() = delete;
-    EvenThinger(const EvenThinger& other): Thinger<EvenThinger, int>(), value_(std::make_shared<int>(*other.value_)) {};
-    EvenThinger(EvenThinger&& other): Thinger<EvenThinger, int>(), value_(other.value_) {other.value_ = nullptr;}
-    ~EvenThinger() {}
+    EvenIntThinger(): BaseThinger(), Thinger<EvenIntThinger, int>() {}
 
-    EvenThinger(int&& val): Thinger<EvenThinger, int>(), value_(std::make_shared<int>(val)) {}
+    public:
+    EvenIntThinger(const EvenIntThinger& other): EvenIntThinger() {value_ = std::make_shared<int>(*other.value_);};
+    EvenIntThinger(EvenIntThinger&& other): EvenIntThinger() {value_ = other.value_; other.value_ = nullptr;}
+    ~EvenIntThinger() {}
+
+    EvenIntThinger(int&& val): EvenIntThinger() {value_ = std::make_shared<int>(val);}
 };
 
 template<typename T>

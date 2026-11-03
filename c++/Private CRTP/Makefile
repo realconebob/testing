@@ -12,6 +12,7 @@ remake:
 build:
 	@cmake -B $@ \
 		-DCMAKE_BUILD_TYPE=Debug \
+		-DCMAKE_CXX_COMPILER=clang++ \
 		-DCMAKE_CXX_FLAGS="${CXXFLAGS}"
 	@cmake --build $@ -j
 
