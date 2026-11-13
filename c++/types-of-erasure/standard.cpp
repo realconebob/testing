@@ -1,9 +1,9 @@
 /**
- * @brief Standard object oriented type erasure
+ * @brief Standard object oriented polymorphism/"type erasure"
  */
 
 #include <cstdio>
-#include <vector>
+#include <array>
 
 class ThingerInterface {
     protected:
@@ -22,8 +22,6 @@ class ThingerInterface {
 
 class ThingerA: public ThingerInterface {
     public:
-    ThingerA() {}
-    ~ThingerA() {}
 
     int dothing() const override {
         std::printf("ThingerA dothing\n");
@@ -33,8 +31,6 @@ class ThingerA: public ThingerInterface {
 
 class ThingerB: public ThingerInterface {
     public:
-    ThingerB() {}
-    ~ThingerB() {}
 
     int dothing() const override {
         std::printf("ThingerB dothing\n");
@@ -43,10 +39,13 @@ class ThingerB: public ThingerInterface {
 };
 
 int main(void) {
-    auto ta = ThingerA{};
-    auto tb = ThingerB{};
+    ThingerA ta{};
+    ThingerB tb{};
 
-    for(const auto& thing: (const ThingerInterface* const []){&ta, &tb}) {
+    // Java may be annoying, but it has spoiled me here. I feel like I should be able to just upcast to
+    // ThingerInterface, but this style makes sense if viewed like an opaque struct in C
+    std::array<const ThingerInterface*, 2> thingers{&ta, &tb};
+    for(const ThingerInterface* thing: thingers) {
         std::printf("Doing thing: %d\n", thing->dothing());
     }
 
