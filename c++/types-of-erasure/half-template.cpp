@@ -10,6 +10,7 @@
 template<typename T>
 concept Floating = std::same_as<T, float> || std::same_as<T, double> || std::same_as<T, long double>;
 
+template<Floating T>
 class ThingerInterface {
     protected:
     ThingerInterface() = default;
@@ -20,19 +21,22 @@ class ThingerInterface {
     ThingerInterface(ThingerInterface&&) = delete;
     virtual ~ThingerInterface() = default;
 
+    virtual void store(T input) = 0;
+    virtual const T& get() const = 0;
+
     virtual void dothing() const = 0;
 };
 
 template<Floating T>
-class ThingerA: public ThingerInterface {
+class ThingerA: public ThingerInterface<T> {
     private:
     T storage_;
 
     public:
     ThingerA(T input): storage_{input} {}
 
-    const T& get_storage() const {return storage_;}
-    void set_storage(T input) {storage_ = input;}
+    void store(T input) override {storage_ = input;};
+    const T& get() const override {return storage_;};
 
     void dothing() const override {
         std::printf("ThingerA dothing: %2.2f", 1 / static_cast<float>(storage_));
@@ -40,15 +44,15 @@ class ThingerA: public ThingerInterface {
 };
 
 template<Floating T>
-class ThingerB: public ThingerInterface {
+class ThingerB: public ThingerInterface<T> {
     private:
     T storage_;
 
     public:
     ThingerB(T input): storage_{input} {}
 
-    const T& get_storage() const {return storage_;}
-    void set_storage(T input) {storage_ = input;}
+    void store(T input) override {storage_ = input;}
+    const T& get() const override {return storage_;}
 
     void dothing() const override {
         std::printf("ThingerB dothing: %2.2f", static_cast<float>(storage_) * 10.0f);
@@ -56,16 +60,14 @@ class ThingerB: public ThingerInterface {
 };
 
 int main(void) {
-    ThingerA<float> ta{10.0};
+    ThingerA<double> ta{10.0};
     ThingerB<double> tb{7.0};
 
-    std::array<const ThingerInterface*, 2> thingers{&ta, &tb};
-    for(const ThingerInterface * const thing: thingers) {
+    std::array<const ThingerInterface<double>*, 2> thingers{&ta, &tb};
+    for(const ThingerInterface<double> * const thing: thingers) {
         std::printf("Doing thing:\n");
         thing->dothing();
         std::printf("\n");
-        // Note: Can't access templated functions from ThingerInterface as ThingerInterface itself is not
-        // templated, nor can it be thanks to its virtual functions
     }
 
     return 0;
